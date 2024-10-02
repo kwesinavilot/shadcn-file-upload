@@ -17,12 +17,7 @@ While working on a project using shadcn/ui, I realized there wasn't a drag-and-d
 - 📱 Responsive design
 
 ## Installation
-
-```bash
-npm install shadcn-file-upload
-# or
-yarn add shadcn-file-upload
-```
+For now, copy and paste the `FileUpload` file into your project's components directory or wherever you want it to be and import it as a component where you want it to be used.
 
 ## Usage
 
@@ -32,7 +27,7 @@ Here are some examples of how to use the FileUpload component:
 
 ```jsx
 import React from 'react';
-import { FileUpload } from 'shadcn-file-upload';
+import FileUpload from './your/path/to/FileUpload.jsx';
 
 function App() {
   const handleFilesUploaded = (files) => {
@@ -64,6 +59,7 @@ export default App;
 ```jsx
 <FileUpload
   mode="horizontal"
+  defaultText="Drag and drop files here"
   onFilesUploaded={handleFilesUploaded}
 />
 ```
