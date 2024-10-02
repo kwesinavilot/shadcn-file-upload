@@ -44,7 +44,20 @@ function App() {
 export default App;
 ```
 
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| mode | 'vertical' \| 'horizontal' | 'vertical' | Layout mode of the component |
+| uploadMode | 'single' \| 'multi' | 'single' | Single or multiple file upload mode |
+| defaultText | string | 'Upload file' | Text displayed in the upload area |
+| maxSize | number | 5 * 1024 * 1024 (5MB) | Maximum file size in bytes |
+| acceptedFileTypes | object | { 'application/pdf': ['.pdf'], 'application/msword': ['.doc'], 'application/vnd.openxmlformats-officedocument.wordprocessingml.document': ['.docx'] } | Object specifying accepted MIME types and their extensions |
+| onFilesUploaded | (files: File[] \| File \| null) => void | - | Callback function when files are uploaded or removed |
+
+
 ### Vertical Mode with Custom Text (Default)
+In the mode, the upload icon is displayed at the top, and the default text is displayed in the center.
 
 ```jsx
 <FileUpload
@@ -55,6 +68,7 @@ export default App;
 ```
 
 ### Horizontal Mode
+In the mode, the upload icon is displayed at the left, and the default text is displayed in the center.
 
 ```jsx
 <FileUpload
@@ -65,6 +79,7 @@ export default App;
 ```
 
 ### Single File Upload
+This option allows you to upload a single file at a time, and when a file is selected, the upload zone disappears. The uploaded file will be displayed in the component.
 
 ```jsx
 <FileUpload
@@ -74,6 +89,7 @@ export default App;
 ```
 
 ### Multiple File Upload
+This option allows you to upload multiple files at once. When a file is selected, the upload zone is still visible and the selected files are displayed below it.
 
 ```jsx
 <FileUpload
@@ -83,6 +99,7 @@ export default App;
 ```
 
 ### Custom File Types and Size Limit
+You can customize the accepted file types and the maximum file size.
 
 ```jsx
 <FileUpload
@@ -94,17 +111,6 @@ export default App;
   onFilesUploaded={handleFilesUploaded}
 />
 ```
-
-## Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| mode | 'vertical' \| 'horizontal' | 'vertical' | Layout mode of the component |
-| uploadMode | 'single' \| 'multi' | 'single' | Single or multiple file upload mode |
-| defaultText | string | 'Upload file' | Text displayed in the upload area |
-| maxSize | number | 5 * 1024 * 1024 (5MB) | Maximum file size in bytes |
-| acceptedFileTypes | object | { 'application/pdf': ['.pdf'], 'application/msword': ['.doc'], 'application/vnd.openxmlformats-officedocument.wordprocessingml.document': ['.docx'] } | Object specifying accepted MIME types and their extensions |
-| onFilesUploaded | (files: File[] \| File \| null) => void | - | Callback function when files are uploaded or removed |
 
 ## Styling
 
