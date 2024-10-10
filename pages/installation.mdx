@@ -1,0 +1,63 @@
+# Installation
+
+There are two ways to add shadcn-file-upload to your project: installing it as a package or copying the component directly into your project.
+
+## Option 1: Install as a Package
+
+To install shadcn-file-upload as a package, run the following command in your project directory:
+
+```bash
+npm install shadcn-file-upload
+```
+
+or if you're using yarn:
+
+```bash
+yarn add shadcn-file-upload
+```
+
+After installation, you can import and use the component in your React files:
+
+```jsx
+import FileUpload from 'shadcn-file-upload';
+```
+
+## Option 2: Copy and Paste
+
+If you prefer to have more control over the component or want to modify it directly, you can copy the `FileUpload.jsx` file into your project:
+
+1. Download the `FileUpload.jsx` file from our GitHub repository.
+2. Place the file in your project's components directory (or any preferred location).
+3. Import the component in your React files:
+
+```jsx
+import FileUpload from './path/to/FileUpload';
+```
+
+## Dependencies
+
+shadcn-file-upload relies on the following dependencies:
+
+- React
+- react-dropzone
+- lucide-react
+- @radix-ui/react-slot (via shadcn/ui)
+
+Make sure these are installed in your project. If you're using shadcn/ui, you likely already have most of these dependencies installed.
+
+## Tailwind CSS Configuration
+
+If you're using Tailwind CSS (which is recommended for shadcn/ui projects), ensure your `tailwind.config.js` file includes the necessary paths:
+
+```js
+module.exports = {
+  content: [
+    // ...
+    './components/**/*.{js,ts,jsx,tsx}',
+    // Add the path to where you've placed FileUpload.jsx
+  ],
+  // ...
+}
+```
+
+With these steps completed, you're ready to start using shadcn-file-upload in your project!

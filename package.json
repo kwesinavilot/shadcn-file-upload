@@ -11,7 +11,8 @@
         "build": "rollup -c",
         "docs:dev": "next",
         "docs:build": "next build",
-        "docs:start": "next start"
+        "docs:start": "next start",
+        "docs:export": "next build && next export"
     },
     "peerDependencies": {
         "react": "^18.3.1",
