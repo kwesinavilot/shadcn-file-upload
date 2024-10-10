@@ -1,28 +1,60 @@
 # shadcn-file-upload
 
-Welcome to the documentation for shadcn-file-upload, a customizable file upload component for React, built with shadcn/ui and react-dropzone.
+Welcome to the documentation for shadcn-file-upload, a versatile and customizable file upload component for React, built with shadcn/ui and react-dropzone.
 
-## Features
+## Overview
 
-- Drag and drop file upload
-- Vertical and horizontal layout modes
-- Single and multiple file upload modes
-- Customizable text and icons
-- File type and size limit options
-- Built with shadcn/ui for consistent styling
+shadcn-file-upload offers a seamless drag-and-drop experience, multiple layout options, and integrates perfectly with shadcn/ui projects. Whether you're building a simple file upload form or a complex document management system, this component provides the flexibility and functionality you need.
+
+### Key Features
+
+- 🖱️ Drag and drop file upload
+- 📏 Vertical and horizontal layout modes
+- 🔢 Single and multiple file upload modes
+- 🎨 Customizable text and icons
+- 📁 File type and size limit options
+- 🎭 Built with shadcn/ui for consistent styling
+- 📱 Responsive design
 
 ## Quick Start
 
+To get started with shadcn-file-upload, you can either install it as a package or copy the component directly into your project.
+
+### Installation as a Package
+
+```bash
+npm install shadcn-file-upload
+```
+
+### Copy and Paste
+
+Alternatively, you can copy the `FileUpload.jsx` file directly into your project's components directory.
+
+## Basic Usage
+
+Here's a simple example of how to use the FileUpload component:
+
 ```jsx
-import { FileUpload } from 'shadcn-file-upload';
+import React from 'react';
+import FileUpload from 'shadcn-file-upload';
 
 function App() {
+  const handleFilesUploaded = (files) => {
+    console.log('Uploaded files:', files);
+  };
+
   return (
     <FileUpload
-      onFilesUploaded={(files) => console.log(files)}
+      onFilesUploaded={handleFilesUploaded}
     />
   );
 }
+
+export default App;
 ```
 
-For more detailed information, check out our [Installation](/installation) and [Usage](/usage) guides.
+For more detailed information on usage, configuration, and customization, please explore the other sections of this documentation.
+
+## Why shadcn-file-upload?
+
+While working on a project using shadcn/ui, I realized there wasn't a drag-and-drop file upload component that fit my needs. I created this component to not only work well with shadcn/ui but also offer flexibility in terms of layout and functionality. I'm excited to share it with the community and hope it proves useful in your projects!
