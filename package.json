@@ -4,30 +4,40 @@
     "description": "A versatile, customizable file upload component for React, built with shadcn/ui and react-dropzone",
     "main": "dist/index.js",
     "module": "dist/index.esm.js",
-    "files": ["dist"],
+    "files": [
+        "dist"
+    ],
     "scripts": {
-      "build": "rollup -c",
-      "docs:dev": "next dev",
-      "docs:build": "next build",
-      "docs:start": "next start"
+        "build": "rollup -c",
+        "docs:dev": "next dev",
+        "docs:build": "next build",
+        "docs:start": "next start"
     },
     "peerDependencies": {
-      "react": "^17.0.0 || ^18.0.0",
-      "react-dom": "^17.0.0 || ^18.0.0"
+        "react": "^18.3.1",
+        "react-dom": "^18.3.1"
     },
     "dependencies": {
-      "react-dropzone": "^11.3.4"
+        "react-dropzone": "^11.3.4"
     },
     "devDependencies": {
-      "@rollup/plugin-commonjs": "^21.0.1",
-      "@rollup/plugin-node-resolve": "^13.0.6",
-      "rollup": "^2.60.0",
-      "rollup-plugin-peer-deps-external": "^2.2.4",
-      "next": "^13.0.0",
-      "nextra": "^2.0.0",
-      "nextra-theme-docs": "^2.0.0"
+        "@rollup/plugin-commonjs": "^21.0.1",
+        "@rollup/plugin-node-resolve": "^13.0.6",
+        "next": "^13.5.7",
+        "nextra": "^2.13.4",
+        "nextra-theme-docs": "^2.13.4",
+        "rollup": "^2.60.0",
+        "rollup-plugin-peer-deps-external": "^2.2.4"
     },
-    "keywords": ["react", "file-upload", "shadcn", "drag-and-drop"],
-    "author": "Your Name",
+    "keywords": [
+        "react",
+        "file-upload",
+        "shadcn",
+        "drag-and-drop",
+        "react-dropzone",
+        "react-file-upload"
+    ],
+    "author": "Andrews Kwesi Ankomahene",
+    "homepage": "https://kwesinavilot.github.io/shadcn-file-upload",
     "license": "MIT"
-  }
+}
