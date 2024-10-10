@@ -9,7 +9,7 @@
     ],
     "scripts": {
         "build": "rollup -c",
-        "docs:dev": "next dev",
+        "docs:dev": "next",
         "docs:build": "next build",
         "docs:start": "next start"
     },
