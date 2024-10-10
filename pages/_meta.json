@@ -1,0 +1,11 @@
+{
+    "index": "Home",
+    "installation": "Installation",
+    "usage": "Usage",
+    "customization": "Customization",
+    "---": {
+      "type": "separator"
+    },
+    "apiref": "API Reference"
+  }
+  

@@ -14,6 +14,14 @@ export default {
         description: 'Learn how to use the shadcn-file-upload component in your React project.',
         link: '/usage'
     },
+    customization: {
+        title: 'Customization',
+        description: 'Learn how to customize the shadcn-file-upload component in your React project.',
+        link: '/customization'
+    },
+    '---': {
+        type: 'separator'
+    },
     apiref: {
         title: 'API Reference',
         description: 'Learn how to use the shadcn-file-upload component in your React project.',
