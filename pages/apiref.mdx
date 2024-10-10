@@ -1,0 +1,86 @@
+# API Reference
+
+The FileUpload component accepts several props to customize its behavior and appearance. Here's a detailed breakdown of each prop:
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `mode` | `'vertical' \| 'horizontal'` | `'vertical'` | Layout mode of the component |
+| `uploadMode` | `'single' \| 'multi'` | `'single'` | Single or multiple file upload mode |
+| `defaultText` | `string` | `'Upload file'` | Text displayed in the upload area |
+| `maxSize` | `number` | `5 * 1024 * 1024` (5MB) | Maximum file size in bytes |
+| `acceptedFileTypes` | `object` | See below | Object specifying accepted MIME types and their extensions |
+| `onFilesUploaded` | `(files: File[] \| File \| null) => void` | - | Callback function when files are uploaded or removed |
+
+### Detailed Prop Descriptions
+
+#### `mode`
+- **Type:** `'vertical' | 'horizontal'`
+- **Default:** `'vertical'`
+- **Description:** Determines the layout of the upload area. In vertical mode, the icon is above the text. In horizontal mode, the icon is to the left of the text.
+
+#### `uploadMode`
+- **Type:** `'single' | 'multi'`
+- **Default:** `'single'`
+- **Description:** Determines whether the component allows single or multiple file uploads. In single mode, only one file can be selected at a time. In multi mode, multiple files can be selected and displayed.
+
+#### `defaultText`
+- **Type:** `string`
+- **Default:** `'Upload file'`
+- **Description:** The text displayed in the upload area when no files are selected. This can be customized to provide more specific instructions to the user.
+
+#### `maxSize`
+- **Type:** `number`
+- **Default:** `5 * 1024 * 1024` (5MB)
+- **Description:** The maximum allowed file size in bytes. Files larger than this will be rejected.
+
+#### `acceptedFileTypes`
+- **Type:** `object`
+- **Default:**
+  ```javascript
+  {
+    'application/pdf': ['.pdf'],
+    'application/msword': ['.doc'],
+    'application/vnd.openxmlformats-officedocument.wordprocessingml.document': ['.docx']
+  }
+  ```
+- **Description:** An object specifying the accepted file types. The keys are MIME types, and the values are arrays of corresponding file extensions.
+
+#### `onFilesUploaded`
+- **Type:** `(files: File[] | File | null) => void`
+- **Description:** A callback function that is called when files are uploaded or removed. It receives the following arguments:
+  - In single mode: A single `File` object when a file is uploaded, or `null` when the file is removed.
+  - In multi mode: An array of `File` objects.
+
+## Returned File Object
+
+The `File` object returned by the component includes the following properties:
+
+- `name`: The name of the file.
+- `size`: The size of the file in bytes.
+- `type`: The MIME type of the file.
+- `preview`: A URL created by `URL.createObjectURL()` for image preview (if applicable).
+
+## Usage Example
+
+Here's an example showcasing all available props:
+
+```jsx
+<FileUpload
+  mode="horizontal"
+  uploadMode="multi"
+  defaultText="Drag and drop your files here"
+  maxSize={10 * 1024 * 1024} // 10MB
+  acceptedFileTypes={{
+    'image/jpeg': ['.jpg', '.jpeg'],
+    'image/png': ['.png'],
+    'application/pdf': ['.pdf']
+  }}
+  onFilesUploaded={(files) => {
+    console.log('Uploaded files:', files);
+  }}
+/>
+```
+
+This configuration creates a horizontal, multi-file upload component that accepts JPEGs, PNGs, and PDFs up to 10MB in size, with custom instructional text.

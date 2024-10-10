@@ -1,0 +1,142 @@
+# Usage
+
+shadcn-file-upload is designed to be flexible and easy to use. Here are some common usage scenarios and examples to help you get started.
+
+## Basic Usage
+
+The simplest way to use the FileUpload component is with default settings:
+
+```jsx
+import React from 'react';
+import FileUpload from 'shadcn-file-upload';
+
+function App() {
+  const handleFilesUploaded = (files) => {
+    console.log('Uploaded files:', files);
+  };
+
+  return (
+    <FileUpload
+      onFilesUploaded={handleFilesUploaded}
+    />
+  );
+}
+
+export default App;
+```
+
+This will render a vertical file upload component that accepts single file uploads.
+
+## Customizing the Layout
+
+You can change the layout to horizontal mode:
+
+```jsx
+<FileUpload
+  mode="horizontal"
+  onFilesUploaded={handleFilesUploaded}
+/>
+```
+
+## Multiple File Upload
+
+To allow multiple file uploads:
+
+```jsx
+<FileUpload
+  uploadMode="multi"
+  onFilesUploaded={handleFilesUploaded}
+/>
+```
+
+## Custom Text and File Types
+
+You can customize the default text and accepted file types:
+
+```jsx
+<FileUpload
+  defaultText="Drop your images here"
+  acceptedFileTypes={{
+    'image/jpeg': ['.jpg', '.jpeg'],
+    'image/png': ['.png']
+  }}
+  onFilesUploaded={handleFilesUploaded}
+/>
+```
+
+## File Size Limit
+
+Set a custom maximum file size:
+
+```jsx
+<FileUpload
+  maxSize={10 * 1024 * 1024} // 10MB
+  onFilesUploaded={handleFilesUploaded}
+/>
+```
+
+## Handling Uploaded Files
+
+The `onFilesUploaded` callback provides access to the uploaded files:
+
+```jsx
+const handleFilesUploaded = (files) => {
+  if (Array.isArray(files)) {
+    // Multiple files
+    files.forEach(file => {
+      console.log('File name:', file.name);
+      console.log('File size:', file.size);
+      console.log('File type:', file.type);
+    });
+  } else if (files) {
+    // Single file
+    console.log('File name:', files.name);
+    console.log('File size:', files.size);
+    console.log('File type:', files.type);
+  } else {
+    // No files (when all files are removed in single mode)
+    console.log('No files uploaded');
+  }
+};
+```
+
+## Full Example
+
+Here's a more comprehensive example showcasing various features:
+
+```jsx
+import React from 'react';
+import FileUpload from 'shadcn-file-upload';
+
+function App() {
+  const handleFilesUploaded = (files) => {
+    console.log('Uploaded files:', files);
+  };
+
+  return (
+    <div className="p-4">
+      <h1 className="text-2xl font-bold mb-4">File Upload Demo</h1>
+      <FileUpload
+        mode="horizontal"
+        uploadMode="multi"
+        defaultText="Drag and drop your documents here"
+        maxSize={15 * 1024 * 1024} // 15MB
+        acceptedFileTypes={{
+          'application/pdf': ['.pdf'],
+          'application/msword': ['.doc'],
+          'application/vnd.openxmlformats-officedocument.wordprocessingml.document': ['.docx'],
+          'image/jpeg': ['.jpg', '.jpeg'],
+          'image/png': ['.png']
+        }}
+        onFilesUploaded={handleFilesUploaded}
+      />
+    </div>
+  );
+}
+
+export default App;
+```
+
+This example creates a horizontal, multi-file upload component that accepts PDF, Word documents, and images up to 15MB in size.
+
+Remember to adjust the styling and layout to fit your specific project needs. The FileUpload component is designed to work seamlessly with shadcn/ui, so you can easily integrate it into your existing design system.

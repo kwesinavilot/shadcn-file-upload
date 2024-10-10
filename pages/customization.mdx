@@ -1,0 +1,175 @@
+# Styling and Customization
+
+shadcn-file-upload is designed to be highly customizable while maintaining consistency with shadcn/ui projects. This guide will walk you through various ways to style and customize the component to fit your specific needs.
+
+## Default Styling
+
+By default, the FileUpload component uses Tailwind CSS classes for styling, ensuring it blends seamlessly with other shadcn/ui components. The default styles include:
+
+- A dashed border around the upload area
+- Hover and active states for better user interaction
+- Responsive design for various screen sizes
+- Consistent typography and spacing
+
+## Customizing with Tailwind CSS
+
+You can easily customize the appearance of the FileUpload component by modifying the Tailwind CSS classes used in the component. Here are some areas you might want to customize:
+
+### Upload Area
+
+The main upload area uses the following classes:
+
+```jsx
+const dropzoneClasses = cn(
+  "border-2 border-dashed rounded-lg p-4 text-center cursor-pointer transition-colors",
+  isDragActive ? "border-blue-500 bg-blue-50" : "border-gray-300 hover:border-gray-400",
+  mode === 'horizontal' ? "flex items-center justify-center space-x-4" : "flex flex-col justify-center items-center space-y-2"
+);
+```
+
+You can modify these classes to change the appearance of the upload area. For example, to change the border color and background:
+
+```jsx
+const dropzoneClasses = cn(
+  "border-2 border-dashed rounded-lg p-4 text-center cursor-pointer transition-colors",
+  isDragActive ? "border-green-500 bg-green-50" : "border-purple-300 hover:border-purple-400",
+  // ... rest of the classes
+);
+```
+
+### File List
+
+The file list items use these classes:
+
+```jsx
+<div className="flex items-center justify-between p-3 bg-white rounded-md border border-gray-200 shadow">
+  {/* ... */}
+</div>
+```
+
+You can customize these to change the appearance of the file list items.
+
+## Custom Icons
+
+The component uses icons from the `lucide-react` library. You can easily swap these out for your preferred icons:
+
+```jsx
+import { Upload, X, Trash } from 'lucide-react'; // Replace with your preferred icon library
+
+// In the component
+<YourCustomIcon className="w-8 h-8 text-gray-400" />
+```
+
+## Advanced Customization
+
+For more advanced customization, you can modify the FileUpload component directly:
+
+1. Copy the `FileUpload.jsx` file into your project.
+2. Modify the component's JSX and styling to fit your needs.
+3. Import your customized version instead of the package version.
+
+Here's an example of how you might customize the component:
+
+```jsx
+import React, { useCallback, useState } from 'react';
+import { useDropzone } from 'react-dropzone';
+import { Upload, X, Trash } from 'lucide-react';
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+
+const CustomFileUpload = ({
+  // ... props
+}) => {
+  // ... existing component logic
+
+  const dropzoneClasses = cn(
+    "border-2 border-dashed rounded-lg p-6 text-center cursor-pointer transition-colors",
+    isDragActive ? "border-primary bg-primary/10" : "border-muted hover:border-muted-foreground",
+    mode === 'horizontal' ? "flex items-center justify-center space-x-4" : "flex flex-col justify-center items-center space-y-3"
+  );
+
+  const renderDropzone = () => (
+    <div {...getRootProps({ className: dropzoneClasses })}>
+      <input {...getInputProps()} />
+      <Upload className="w-10 h-10 text-muted-foreground" />
+      <div>
+        <p className="text-lg font-medium text-foreground">{defaultText}</p>
+        <p className="text-sm text-muted-foreground">(PDF, DOC, DOCX up to {maxSize / (1024 * 1024)}MB)</p>
+      </div>
+    </div>
+  );
+
+  const renderFileList = () => (
+    <div className="mt-6 space-y-3">
+      {files.map((file, index) => (
+        <div key={index} className="flex items-center justify-between p-4 bg-background rounded-md border border-input shadow-sm">
+          <div className="flex items-center space-x-3">
+            <div className="w-10 h-10 bg-muted rounded flex items-center justify-center">
+              <span className="text-xs font-medium uppercase">{file.name.split('.').pop()}</span>
+            </div>
+            <div className='flex flex-col'>
+              <p className="text-sm font-medium text-foreground truncate max-w-[200px]">{file.name}</p>
+              <p className="text-xs text-muted-foreground">{(file.size / 1024).toFixed(2)} KB</p>
+            </div>
+          </div>
+          <Button variant="ghost" size="sm" onClick={() => removeFile(file)}>
+            <Trash className="w-4 h-4" />
+          </Button>
+        </div>
+      ))}
+    </div>
+  );
+
+  // ... rest of the component
+
+};
+
+export default CustomFileUpload;
+```
+
+This customized version uses more shadcn/ui-specific classes and a slightly different layout.
+
+## Theming
+
+shadcn-file-upload is designed to work with shadcn/ui's theming system. You can customize the look of the component by modifying your theme in the `globals.css` file:
+
+```css
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --primary: 222.2 47.4% 11.2%;
+    /* ... other color variables ... */
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --primary: 210 40% 98%;
+    /* ... other dark mode color variables ... */
+  }
+}
+```
+
+By adjusting these color variables, you can change the overall look of the FileUpload component to match your application's theme.
+
+## Responsive Design
+
+While the component is already responsive, you can further customize its behavior on different screen sizes:
+
+```jsx
+const dropzoneClasses = cn(
+  "border-2 border-dashed rounded-lg p-4 text-center cursor-pointer transition-colors",
+  isDragActive ? "border-primary bg-primary/10" : "border-muted hover:border-muted-foreground",
+  mode === 'horizontal' ? "sm:flex sm:items-center sm:justify-center sm:space-x-4" : "flex flex-col justify-center items-center space-y-2",
+  "flex flex-col justify-center items-center space-y-2 sm:space-y-0"
+);
+```
+
+This example ensures that the component stacks vertically on small screens and switches to the specified mode on larger screens.
+
+By leveraging these customization techniques, you can tailor the FileUpload component to perfectly fit your application's design and functionality needs while maintaining consistency with the shadcn/ui ecosystem.

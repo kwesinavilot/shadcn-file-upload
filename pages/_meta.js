@@ -8,5 +8,15 @@ export default {
         title: 'Installation',
         description: 'Learn how to install and use the shadcn-file-upload component in your React project.',
         link: '/installation'
+    },
+    usage: {
+        title: 'Usage',
+        description: 'Learn how to use the shadcn-file-upload component in your React project.',
+        link: '/usage'
+    },
+    apiref: {
+        title: 'API Reference',
+        description: 'Learn how to use the shadcn-file-upload component in your React project.',
+        link: '/apiref'
     }
 }
