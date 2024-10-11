@@ -7,7 +7,9 @@ const nextConfig = {
   output: 'export',
   images: {
     unoptimized: true
-  }
+  },
+  basePath: '/shadcn-file-upload',
+  assetPrefix: '/shadcn-file-upload/'
 }
 
 module.exports = withNextra(nextConfig)
