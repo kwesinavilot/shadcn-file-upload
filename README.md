@@ -17,7 +17,15 @@ While working on a project using shadcn/ui, I realized there wasn't a drag-and-d
 - 📱 Responsive design
 
 ## Installation
-For now, copy and paste the `FileUpload` file into your project's components directory or wherever you want it to be and import it as a component where you want it to be used.
+There are two ways to use this component:
+
+### 1. Using npm
+```bash
+npm install shadcn-file-upload
+```
+
+### 2. Copy and Paste
+You can also copy and paste the [`FileUpload.jsx`](https://github.com/kwesinavilot/shadcn-file-upload/blob/main/src/FileUpload.jsx) file into your project's components directory or wherever you want it to be and import it as a component where you want it to be used.
 
 ## Usage
 
