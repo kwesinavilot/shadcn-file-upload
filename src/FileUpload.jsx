@@ -5,10 +5,11 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 const FileUpload = ({
-    mode = 'vertical',
+    layout = 'vertical',
     uploadMode = 'single',
-    defaultText = 'Upload file',
-    maxSize = 5 * 1024 * 1024, // 5MB
+    defaultText = 'Select or drag and drop your files here',
+    otherText = '(PDF, DOC, DOCX up to 20MB)',
+    maxSize = 20 * 1024 * 1024, // 20MB
     acceptedFileTypes = {
         'application/pdf': ['.pdf'],
         'application/msword': ['.doc'],
@@ -48,7 +49,7 @@ const FileUpload = ({
     const dropzoneClasses = cn(
         "border-2 border-dashed rounded-lg p-4 text-center cursor-pointer transition-colors",
         isDragActive ? "border-blue-500 bg-blue-50" : "border-gray-300 hover:border-gray-400",
-        mode === 'horizontal' ? "flex items-center justify-center space-x-4" : "flex flex-col justify-center items-center space-y-2"
+        layout === 'horizontal' ? "flex items-center justify-center space-x-4" : "flex flex-col justify-center items-center space-y-2"
     );
 
     const renderDropzone = () => (
@@ -56,7 +57,7 @@ const FileUpload = ({
             <input {...getInputProps()} />
             <UploadIcon className="w-8 h-8 text-gray-400" />
             <p className="text-sm text-gray-600">{defaultText}</p>
-            <p className="text-xs text-gray-500">(PDF, DOC, DOCX up to 5MB)</p>
+            <p className="text-xs text-gray-500">{otherText}</p>
         </div>
     );
 

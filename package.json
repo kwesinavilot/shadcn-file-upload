@@ -6,10 +6,10 @@
     "homepage": "https://kwesinavilot.github.io/shadcn-file-upload",
     "repository": {
         "type": "git",
-        "url": "https://github.com/your-username/shadcn-file-upload.git"
+        "url": "https://github.com/kwesinavilot/shadcn-file-upload.git"
     },
     "bugs": {
-        "url": "https://github.com/your-username/shadcn-file-upload/issues"
+        "url": "https://github.com/kwesinavilot/shadcn-file-upload/issues"
     },
     "main": "dist/index.js",
     "module": "dist/index.esm.js",
@@ -46,6 +46,8 @@
         "react",
         "file-upload",
         "shadcn",
+        "shadcn-ui",
+        "shadcn/ui",
         "drag-and-drop",
         "react-dropzone",
         "react-file-upload",
