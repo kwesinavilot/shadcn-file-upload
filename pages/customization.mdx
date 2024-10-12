@@ -23,7 +23,7 @@ The main upload area uses the following classes:
 const dropzoneClasses = cn(
   "border-2 border-dashed rounded-lg p-4 text-center cursor-pointer transition-colors",
   isDragActive ? "border-blue-500 bg-blue-50" : "border-gray-300 hover:border-gray-400",
-  mode === 'horizontal' ? "flex items-center justify-center space-x-4" : "flex flex-col justify-center items-center space-y-2"
+  layout === 'horizontal' ? "flex items-center justify-center space-x-4" : "flex flex-col justify-center items-center space-y-2"
 );
 ```
 
@@ -85,7 +85,7 @@ const CustomFileUpload = ({
   const dropzoneClasses = cn(
     "border-2 border-dashed rounded-lg p-6 text-center cursor-pointer transition-colors",
     isDragActive ? "border-primary bg-primary/10" : "border-muted hover:border-muted-foreground",
-    mode === 'horizontal' ? "flex items-center justify-center space-x-4" : "flex flex-col justify-center items-center space-y-3"
+    layout === 'horizontal' ? "flex items-center justify-center space-x-4" : "flex flex-col justify-center items-center space-y-3"
   );
 
   const renderDropzone = () => (
@@ -165,7 +165,7 @@ While the component is already responsive, you can further customize its behavio
 const dropzoneClasses = cn(
   "border-2 border-dashed rounded-lg p-4 text-center cursor-pointer transition-colors",
   isDragActive ? "border-primary bg-primary/10" : "border-muted hover:border-muted-foreground",
-  mode === 'horizontal' ? "sm:flex sm:items-center sm:justify-center sm:space-x-4" : "flex flex-col justify-center items-center space-y-2",
+  layout === 'horizontal' ? "sm:flex sm:items-center sm:justify-center sm:space-x-4" : "flex flex-col justify-center items-center space-y-2",
   "flex flex-col justify-center items-center space-y-2 sm:space-y-0"
 );
 ```

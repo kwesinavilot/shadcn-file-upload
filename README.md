@@ -59,7 +59,7 @@ export default App;
 | mode | 'vertical' \| 'horizontal' | 'vertical' | Layout mode of the component |
 | uploadMode | 'single' \| 'multi' | 'single' | Single or multiple file upload mode |
 | defaultText | string | 'Upload file' | Text displayed in the upload area |
-| maxSize | number | 5 * 1024 * 1024 (5MB) | Maximum file size in bytes |
+| maxSize | number | 20 * 1024 * 1024 (20MB) | Maximum file size in bytes |
 | acceptedFileTypes | object | { 'application/pdf': ['.pdf'], 'application/msword': ['.doc'], 'application/vnd.openxmlformats-officedocument.wordprocessingml.document': ['.docx'] } | Object specifying accepted MIME types and their extensions |
 | onFilesUploaded | (files: File[] \| File \| null) => void | - | Callback function when files are uploaded or removed |
 
