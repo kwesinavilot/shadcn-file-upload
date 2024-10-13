@@ -1,6 +1,6 @@
 {
     "name": "shadcn-file-upload",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "A versatile, customizable file upload component for React, built with shadcn/ui and react-dropzone",
     "author": "Andrews Kwesi Ankomahene",
     "homepage": "https://kwesinavilot.github.io/shadcn-file-upload",
@@ -52,7 +52,13 @@
         "react-dropzone",
         "react-file-upload",
         "react-component",
-        "tailwindcss"
+        "tailwindcss",
+        "dropzone",
+        "drop",
+        "upload",
+        "drag",
+        "dropzone",
+        "file"
     ],
     "license": "MIT"
 }

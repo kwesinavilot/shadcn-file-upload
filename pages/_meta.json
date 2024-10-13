@@ -2,6 +2,7 @@
     "index": "Home",
     "installation": "Installation",
     "usage": "Usage",
+    "validation": "Validation",
     "customization": "Customization",
     "---": {
       "type": "separator"

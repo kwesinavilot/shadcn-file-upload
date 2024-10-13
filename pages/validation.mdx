@@ -1,0 +1,165 @@
+# Validation
+
+shadcn-file-upload provides basic built-in validation support for file uploads.
+
+This includes:
+1. File type validation: The component uses the acceptedFileTypes prop to restrict the types of files that can be uploaded. By default, it accepts PDF, DOC, and DOCX files.
+2. File size limit: The maxSize prop sets the maximum allowed file size, which is 20MB by default.
+3. Single vs. Multiple file uploads: The uploadMode prop determines whether single or multiple file uploads are allowed, enforcing this rule during file selection.
+4. File presence check: The component ensures that files are actually selected before processing them.
+
+These built-in validations provide a good foundation for ensuring that uploaded files meet basic requirements, making the component versatile and user-friendly out of the box.
+
+## Validation with Zod
+
+Since [shadcn/ui uses Zod](https://ui.shadcn.com/docs/components/form) for validation, you can leverage Zod schemas to validate the file uploads.
+This allows you to define complex validation rules for your file uploads, ensuring that only files meeting your specific criteria are accepted.
+
+This is the recommended approach.
+
+Here's a high-level overview of the process:
+
+1. Deefine a Zod schema that specifies the validation rules for the file upload. For example, you can define a schema that checks if the uploaded file is a PDF, DOC, or DOCX file, and if its size is within a certain limit.
+2. Pass the defined schema to the FileUpload component as a prop, typically named `zodSchema`.
+3. When a file is uploaded, the component uses the provided schema to validate the file. If the file is invalid, the component logs the error and returns the first error message.
+4. Errors are displayed below the dropzone to the user.
+
+## Basic Zod Validation Example
+
+Here's a basic example of how to use Zod for file validation with the shadcn-file-upload component
+
+```jsx
+import React from 'react';
+import { z } from 'zod';
+import FileUpload from './FileUpload';
+// import FileUpload from 'shadcn-file-upload';
+
+const MyComponent = () => {
+  const fileSchema = z.object({
+    file: z
+      .custom((value) => value instanceof File, "Please upload a file")
+      .refine(
+        (file) => file && file.size <= 5 * 1024 * 1024,
+        "File size should be 5MB or less"
+      )
+      .refine(
+        (file) => {
+          if (!file) return false;
+          const validTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+          return validTypes.includes(file.type);
+        },
+        "Please upload a PDF, DOC, or DOCX file"
+      )
+  });
+
+  const handleFilesUploaded = (file) => {
+    try {
+      fileSchema.parse({ file });
+      console.log('File is valid:', file);
+    } catch (error) {
+      console.error('Validation error:', error.errors);
+    }
+  };
+
+  return (
+    <FileUpload 
+      onFilesUploaded={handleFilesUploaded}
+      zodSchema={fileSchema}    // just pass the Zod schema
+    />
+  );
+};
+
+export default MyComponent;
+```
+
+In this example, we define a Zod schema that:
+1. Ensures the uploaded item is a File object
+2. Checks that the file size is 5MB or less
+3. Verifies that the file type is PDF, DOC, or DOCX
+
+## Advanced Validation Example
+
+For more complex scenarios, you might want to combine file validation with form validation. Here's an example using react-hook-form and Zod:
+
+```jsx
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
+import FileUpload from './FileUpload';
+
+const formSchema = z.object({
+  name: z.string().min(1, "Name is required"),
+  email: z.string().email("Invalid email address"),
+  resume: z
+    .custom((value) => value instanceof File, "Please upload a file")
+    .refine(
+      (file) => file && file.size <= 5 * 1024 * 1024,
+      "Resume should be 5MB or less"
+    )
+    .refine(
+      (file) => {
+        if (!file) return false;
+        const validTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+        return validTypes.includes(file.type);
+      },
+      "Please upload a PDF, DOC, or DOCX file"
+    )
+});
+
+const MyForm = () => {
+  const [resume, setResume] = useState(null);
+  const { register, handleSubmit, formState: { errors }, setValue } = useForm({
+    resolver: zodResolver(formSchema)
+  });
+
+  const onSubmit = (data) => {
+    console.log('Form data:', data);
+  };
+
+  const handleFileUpload = (file) => {
+    setResume(file);
+    setValue('resume', file);
+  };
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <input {...register('name')} placeholder="Name" />
+      {errors.name && <p>{errors.name.message}</p>}
+
+      <input {...register('email')} placeholder="Email" />
+      {errors.email && <p>{errors.email.message}</p>}
+
+      <FileUpload 
+        onFilesUploaded={handleFileUpload}
+        zodSchema={formSchema.shape.resume}     // pass the Zod schema for file validation
+        errors={errors.resume?.message}
+      />
+
+      <button type="submit">Submit</button>
+    </form>
+  );
+};
+
+export default MyForm;
+```
+
+In this advanced example:
+1. We define a form schema that includes both text inputs and a file upload.
+2. The FileUpload component is integrated into a larger form.
+3. We use react-hook-form for form state management and validation.
+4. The file validation is part of the overall form validation.
+
+## Best Practices
+
+1. **Separate Concerns**: Define your Zod schema separately from your component for better organization and reusability.
+
+2. **Error Handling**: Always handle validation errors gracefully and display user-friendly error messages.
+
+3. **Progressive Enhancement**: Start with basic validations (like file type and size) and progressively add more complex rules as needed.
+
+4. **Performance**: For large files, consider doing some validations on the client-side before uploading to save bandwidth and improve user experience.
+
+5. **Accessibility**: Ensure that error messages are accessible to screen readers and that the validation process doesn't interfere with the overall accessibility of your form.
+
+By following these guidelines and examples, you can effectively implement validation for shadcn-file-upload in your projects.
